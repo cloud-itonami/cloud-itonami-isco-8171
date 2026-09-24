@@ -1,0 +1,35 @@
+;; What this vertical's robot physically does, declared for
+;; kotoba.robotics.process (kotoba-lang/robotics). `kbb -M:physics` runs it.
+;;
+;; README "Robotics premise": a pulp and papermaking plant scheduling/
+;; logistics coordination robot logs production runs and batches, proposes
+;; crew schedules, surfaces safety concerns and coordinates supply orders; it
+;; never operates the digester or paper machine. Its physical work is plant
+;; logistics and rounds: moving pulp bales to the pulper, and taking readings
+;; beside the dryer-section hood, where its own sensor enclosure heats up.
+;;
+;; Every number without a cited source is marked `estimate` in its :basis.
+;; Replacing an estimate with a sourced value is this bot's growth work.
+{:physics/schema "itonami.physical-ai.spec.v1"
+ :repo "cloud-itonami/cloud-itonami-isco-8171"
+ :cases
+ [{:id :pulp-bales-to-pulper
+   :kind :transport
+   :procedure "heavy AMR carries a unit of pulp bales from the bale store to the pulper conveyor"
+   :params {:mass-kg 300.0 :payload-kg 1000.0 :v-max-mps 1.0 :a-max-mps2 0.3
+            :brake-decel-mps2 0.6 :drive-force-n 1200.0 :crr 0.015
+            :cog-height-m 0.35 :support-half-length-m 0.55 :max-time-s 1800.0}
+   :sweep {:param :distance-m :values [30.0 60.0 90.0 120.0 150.0]}
+   :quantity :cycle-time-s
+   :limit {:max 120.0 :basis "estimate: a bale unit every 2 minutes keeps the pulper at its charging rate"}
+   :boundary {:lo 5.0 :hi 400.0}}
+  {:id :sensor-enclosure-at-dryer-hood
+   :kind :thermal
+   :procedure "robot dwells 10 minutes beside the dryer-section hood taking readings; its 3 mm polycarbonate sensor enclosure wall heats from the hot hood air"
+   :params {:thickness-m 0.003 :conductivity-w-mk 0.20 :density-kg-m3 1200.0 :specific-heat-j-kgk 1200.0
+            :t0-c 30.0 :h-front-w-m2k 15.0 :t-back-ambient-c 30.0 :h-back-w-m2k 5.0
+            :threshold-c 60.0 :duration-s 600.0 :nodes 11}
+   :sweep {:param :t-hot-c :values [60.0 80.0 100.0 120.0 140.0]}
+   :quantity :peak-back-c
+   :limit {:max 60.0 :basis "estimate: ~60 C upper operating temperature typical of commercial sensor electronics behind the enclosure wall"}
+   :boundary {:lo 40.0 :hi 200.0}}]}
