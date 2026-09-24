@@ -1,5 +1,5 @@
 (ns pulpcoord.governor-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [pulpcoord.store :as store]
             [pulpcoord.advisor :as advisor]
             [pulpcoord.governor :as governor]))

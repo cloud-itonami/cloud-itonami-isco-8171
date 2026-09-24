@@ -1,5 +1,5 @@
 (ns pulpcoord.actor-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [pulpcoord.actor :as actor]
             [pulpcoord.store :as store]))
 
