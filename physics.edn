@@ -31,5 +31,5 @@
             :threshold-c 60.0 :duration-s 600.0 :nodes 11}
    :sweep {:param :t-hot-c :values [60.0 80.0 100.0 120.0 140.0]}
    :quantity :peak-back-c
-   :limit {:max 60.0 :basis "estimate: ~60 C upper operating temperature typical of commercial sensor electronics behind the enclosure wall"}
+   :limit {:max 60.0 :basis "Industrial Instruments Product Catalog B212671EN-A: −40 to +60 °C operating temperature (https://xintop.com/wp-content/uploads/2022/05/HMP60.pdf)"}
    :boundary {:lo 40.0 :hi 200.0}}]}
