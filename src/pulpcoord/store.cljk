@@ -1,7 +1,7 @@
 (ns pulpcoord.store
   "SSoT for the ISCO-08 8171 Pulp and Papermaking Plant Operators
   pulp-and-papermaking-plant scheduling/logistics coordination actor
-  (itonami actor pattern, ADR-2607121000 / CLAUDE.md Actors section;
+  (itonami actor pattern, ADR-2607121000 / AGENTS.md Actors section;
   README's 'Robotics premise' — a pulp-and-papermaking-plant
   scheduling/logistics coordination robot proposes crew/shift
   scheduling, production-run/batch/progress record logging,
